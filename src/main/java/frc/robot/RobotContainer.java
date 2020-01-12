@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -38,6 +39,7 @@ public class RobotContainer {
   //SUBSYSTEMS INITIALIZED & CONSTRUCTED BELOW:
   //***************************************************************************/
   private final Motors RobotDriveMotors = new Motors();
+  private final IntakeMotor IntakeMechanism = new IntakeMotor();
   //private final ModelTurret Turret = new ModelTurret(2,3);
   //private final CompressorController Compressor = new CompressorController();
   //private final HatchGrabber HatchSolenoid = new HatchGrabber(0);
@@ -47,6 +49,7 @@ public class RobotContainer {
   //USERINPUT STUFF (CONTROLLERS, JOYSTICK BUTTONS) INIT & CONSTRUCTED BELOW:
   //***************************************************************************/
   private Joystick ControllerDrive = new Joystick(0);
+  private Joystick ControllerAuxiliary = new Joystick(1);
   //private final JoystickButton AButton = new JoystickButton(ControllerDrive,1);
   //private final JoystickButton XButton = new JoystickButton(ControllerDrive,3);
   //private final JoystickButton YButton = new JoystickButton(ControllerDrive,4);
@@ -55,8 +58,8 @@ public class RobotContainer {
   //COMMANDS INIT & CONSTRUCTED BELOW:
   //***************************************************************************/
   //private final TankDrive ActivateTankDrive = new TankDrive(RobotDriveMotors,ControllerDrive,1,5);
-  final MattDrive ActivateMattDrive = new MattDrive(RobotDriveMotors,ControllerDrive,1,4);
-
+  private final MattDrive ActivateMattDrive = new MattDrive(RobotDriveMotors,ControllerDrive,1,4);
+  private final EnableJoystickIntakeControl ActivateJoystickIntakeControl = new EnableJoystickIntakeControl(IntakeMechanism, ControllerAuxiliary, 1);
 
 
   /**
@@ -88,6 +91,8 @@ public class RobotContainer {
    * @return the command to run in teleop
    */
   public Command getTeleopCommand() {
-    return ActivateMattDrive;//new InstantCommand(() -> System.out.println( ColorSensorUsed.getReadColor()),ColorSensorUsed);//ActivateMattDrive;
+    ParallelCommandGroup ContinuousTeleop = new ParallelCommandGroup();
+    ContinuousTeleop.addCommands(ActivateMattDrive,ActivateJoystickIntakeControl);
+    return ContinuousTeleop;
   }
 }
