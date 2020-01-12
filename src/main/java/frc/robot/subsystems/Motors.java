@@ -33,7 +33,7 @@ public class Motors extends SubsystemBase {
   }
 
   public void setPower(double powerRight,double powerLeft) {
-		double motorPowerMultiplier = .7*gain;
+		double motorPowerMultiplier = -.7*gain;//kop chasis inputs are negative for forward and positive for backwards.
 		double finalRightPower = -1 * powerRight*motorPowerMultiplier;
 		double finalLeftPower = powerLeft*motorPowerMultiplier;
 		motorR1.set(ControlMode.PercentOutput, finalRightPower);

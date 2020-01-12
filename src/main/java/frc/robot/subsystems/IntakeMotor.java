@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class IntakeMotor extends SubsystemBase {
   private VictorSPX ControlledMotor = new VictorSPX(4);
@@ -21,7 +22,7 @@ public class IntakeMotor extends SubsystemBase {
   }
 
   public void setPower(double powerPercent){
-    ControlledMotor.set(ControlMode.PercentOutput, powerPercent);
+    ControlledMotor.set(ControlMode.PercentOutput, powerPercent*Constants.INTAKE_POWER_LIMITER_PERCENT);
   }
 
   @Override
