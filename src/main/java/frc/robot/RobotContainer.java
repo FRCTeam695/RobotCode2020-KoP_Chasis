@@ -59,7 +59,7 @@ public class RobotContainer {
   //***************************************************************************/
   //private final TankDrive ActivateTankDrive = new TankDrive(RobotDriveMotors,ControllerDrive,1,5);
   private final MattDrive ActivateMattDrive = new MattDrive(RobotDriveMotors,ControllerDrive,1,4);
-  private final EnableJoystickIntakeControl ActivateJoystickIntakeControl = new EnableJoystickIntakeControl(IntakeMechanism, ControllerAuxiliary, 1);
+  private final EnableConstantIntake ActivateIntake = new EnableConstantIntake(IntakeMechanism,0.25);
 
 
   /**
@@ -68,8 +68,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    //enable compressor
-    //new InstantCommand(Compressor::enableCompressor,Compressor).schedule();
+    //enable intake
   }
 
   /**
@@ -79,7 +78,6 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //XButton.whenPressed(new SetTurretRotation(Turret,45.0,45.0));
     //YButton.whenPressed(new InstantCommand(HatchSolenoid::toggleHatchState, HatchSolenoid));
 
   }
@@ -92,7 +90,7 @@ public class RobotContainer {
    */
   public Command getTeleopCommand() {
     ParallelCommandGroup ContinuousTeleop = new ParallelCommandGroup();
-    ContinuousTeleop.addCommands(ActivateMattDrive,ActivateJoystickIntakeControl);
+    ContinuousTeleop.addCommands(ActivateMattDrive, ActivateIntake);
     return ContinuousTeleop;
   }
 }

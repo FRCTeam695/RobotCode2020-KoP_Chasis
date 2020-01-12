@@ -24,7 +24,9 @@ public class IntakeMotor extends SubsystemBase {
   public void setPower(double powerPercent){
     ControlledMotor.set(ControlMode.PercentOutput, powerPercent*Constants.INTAKE_POWER_LIMITER_PERCENT);
   }
-
+  public void setPowerUnrestricted(double powerPercent) {
+    ControlledMotor.set(ControlMode.PercentOutput, powerPercent);
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
