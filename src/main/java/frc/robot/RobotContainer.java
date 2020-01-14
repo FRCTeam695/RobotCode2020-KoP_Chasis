@@ -48,8 +48,8 @@ public class RobotContainer {
   //***************************************************************************/
   //USERINPUT STUFF (CONTROLLERS, JOYSTICK BUTTONS) INIT & CONSTRUCTED BELOW:
   //***************************************************************************/
-  private Joystick ControllerDrive = new Joystick(0);
-  private Joystick ControllerAuxiliary = new Joystick(1);
+  //private Joystick ControllerDrive = new Joystick(0);
+  //private Joystick ControllerAuxiliary = new Joystick(1);
   //private final JoystickButton AButton = new JoystickButton(ControllerDrive,1);
   //private final JoystickButton XButton = new JoystickButton(ControllerDrive,3);
   //private final JoystickButton YButton = new JoystickButton(ControllerDrive,4);
@@ -58,8 +58,8 @@ public class RobotContainer {
   //COMMANDS INIT & CONSTRUCTED BELOW:
   //***************************************************************************/
   //private final TankDrive ActivateTankDrive = new TankDrive(RobotDriveMotors,ControllerDrive,1,5);
-  private final MattDrive ActivateMattDrive = new MattDrive(RobotDriveMotors,ControllerDrive,1,4);
-  private final EnableConstantIntake ActivateIntake = new EnableConstantIntake(IntakeMechanism,0.25);
+  //private final MattDrive ActivateMattDrive = new MattDrive(RobotDriveMotors,ControllerDrive,1,4);
+  private final EnableConstantIntake ActivateIntake = new EnableConstantIntake(IntakeMechanism,Constants.INTAKE_POWER);
 
 
   /**
@@ -90,7 +90,7 @@ public class RobotContainer {
    */
   public Command getTeleopCommand() {
     ParallelCommandGroup ContinuousTeleop = new ParallelCommandGroup();
-    ContinuousTeleop.addCommands(ActivateMattDrive, ActivateIntake);
+    ContinuousTeleop.addCommands(ActivateIntake);
     return ContinuousTeleop;
   }
 }
