@@ -14,11 +14,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class IntakeMotor extends SubsystemBase {
-  private VictorSPX ControlledMotor = new VictorSPX(4);
+  private VictorSPX ControlledMotor;
   /**
    * Creates a new IntakeMotor.
    */
-  public IntakeMotor() {
+  public IntakeMotor(int deviceNumber) {
+    this.ControlledMotor = new VictorSPX(deviceNumber);
   }
 
   public void setPower(double powerPercent){
