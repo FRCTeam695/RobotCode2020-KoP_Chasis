@@ -41,6 +41,7 @@ public class RobotContainer {
   private final Motors RobotDriveMotors = new Motors();
   private final IntakeMotor IntakeMechanism = new IntakeMotor(4);
   private final IntakeMotor BallLift = new IntakeMotor(6);
+  private final BallDetector Detector = new BallDetector(0);
   //private final ModelTurret Turret = new ModelTurret(2,3);
   //private final CompressorController Compressor = new CompressorController();
   //private final HatchGrabber HatchSolenoid = new HatchGrabber(0);
@@ -62,7 +63,7 @@ public class RobotContainer {
   //private final MattDrive ActivateMattDrive = new MattDrive(RobotDriveMotors,ControllerDrive,1,4);
   private final EnableConstantIntake ActivateIntake = new EnableConstantIntake(IntakeMechanism,Constants.INTAKE_POWER);
   private final EnableConstantIntake ActivateLift = new EnableConstantIntake(BallLift,-Constants.INTAKE_POWER);
-
+  private final FindBall ActivateBallFinder = new FindBall(Detector, IntakeMechanism);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -92,7 +93,7 @@ public class RobotContainer {
    */
   public Command getTeleopCommand() {
     ParallelCommandGroup ContinuousTeleop = new ParallelCommandGroup();
-    ContinuousTeleop.addCommands(ActivateIntake,ActivateLift);
+    ContinuousTeleop.addCommands(ActivateLift,ActivateBallFinder);
     return ContinuousTeleop;
   }
 }

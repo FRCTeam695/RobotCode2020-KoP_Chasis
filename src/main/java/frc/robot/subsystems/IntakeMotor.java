@@ -28,6 +28,14 @@ public class IntakeMotor extends SubsystemBase {
   public void setPowerUnrestricted(double powerPercent) {
     ControlledMotor.set(ControlMode.PercentOutput, powerPercent);
   }
+
+  public void spinIntake(boolean boo){
+    if(boo)
+      setPower(-.5);
+    else
+      setPower(0);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
