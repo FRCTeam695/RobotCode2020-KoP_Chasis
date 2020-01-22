@@ -64,7 +64,7 @@ public class RobotContainer {
   private final EnableConstantIntake ActivateIntake = new EnableConstantIntake(IntakeMechanism,Constants.INTAKE_POWER);
   private final EnableConstantIntake ActivateLift = new EnableConstantIntake(BallLift,-Constants.INTAKE_POWER);
   private final FindBall ActivateBallFinder = new FindBall(Detector, IntakeMechanism);
-
+  private final DigitalInputReader EncoderReader = new DigitalInputReader(1,2,3);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
