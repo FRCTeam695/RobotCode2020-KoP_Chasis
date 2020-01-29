@@ -31,6 +31,9 @@ public class EnableConstantIntake extends CommandBase {
 
   public void incrementIntakePower(double increment) {
     this.intakePowerUnrestricted -= increment;
+    if (Math.abs(intakePowerUnrestricted) > 1) {
+      intakePowerUnrestricted = (Math.abs(intakePowerUnrestricted)/intakePowerUnrestricted);
+    }
     System.out.println(intakePowerUnrestricted);
   }
 
