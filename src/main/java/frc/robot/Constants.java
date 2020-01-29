@@ -17,5 +17,4 @@ package frc.robot;
  */
 public final class Constants {
     public static final double INTAKE_POWER_LIMITER_PERCENT = 0.5;
-    public static final double INTAKE_POWER = 0.25; //must be in the interval [0,1]
 }

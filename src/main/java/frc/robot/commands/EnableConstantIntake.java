@@ -13,13 +13,13 @@ import frc.robot.subsystems.IntakeMotor;
 
 public class EnableConstantIntake extends CommandBase {
   private IntakeMotor IntakeMotorControlled;
-  private double intakePowerUnresricted;
+  private double intakePowerUnrestricted;
   /**
    * Creates a new EnableJoystickInakeControl.
    */
-  public EnableConstantIntake(IntakeMotor IntakeMotorControlled,double intakePowerUnresricted) {
+  public EnableConstantIntake(IntakeMotor IntakeMotorControlled,double intakePowerUnrestricted) {
     this.IntakeMotorControlled = IntakeMotorControlled;
-    this.intakePowerUnresricted = -intakePowerUnresricted;
+    this.intakePowerUnrestricted = -intakePowerUnrestricted;
     addRequirements(IntakeMotorControlled);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -29,10 +29,15 @@ public class EnableConstantIntake extends CommandBase {
   public void initialize() {
   }
 
+  public void incrementIntakePower(double increment) {
+    this.intakePowerUnrestricted -= increment;
+    System.out.println(intakePowerUnrestricted);
+  }
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    IntakeMotorControlled.setPowerUnrestricted(intakePowerUnresricted);
+    IntakeMotorControlled.setPowerUnrestricted(intakePowerUnrestricted);
   }
 
   // Called once the command ends or is interrupted.
