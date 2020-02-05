@@ -42,7 +42,7 @@ public class RobotContainer {
   private final Motors RobotDriveMotors = new Motors();
   private final IntakeMotor IntakeMechanism = new IntakeMotor(4);
   //private final IntakeMotor BallLift = new IntakeMotor(6);
-  private final BallDetector Detector = new BallDetector(0);
+  //private final BallDetector Detector = new BallDetector(0);
   //private final ModelTurret Turret = new ModelTurret(2,3);
   //private final CompressorController Compressor = new CompressorController();
   //private final HatchGrabber HatchSolenoid = new HatchGrabber(0);
@@ -64,10 +64,10 @@ public class RobotContainer {
   //***************************************************************************/
   //private final TankDrive ActivateTankDrive = new TankDrive(RobotDriveMotors,ControllerDrive,1,5);
   private final MattDrive ActivateMattDrive = new MattDrive(RobotDriveMotors,ControllerDrive,1,4);
-  private final EnableConstantIntake ActivateIntake = new EnableConstantIntake(IntakeMechanism,0.25);
+  private final EnableConstantIntake ActivateIntake = new EnableConstantIntake(IntakeMechanism,0.1);
   //private final EnableConstantIntake ActivateLift = new EnableConstantIntake(BallLift,-Constants.INTAKE_POWER);
-  private final FindBall ActivateBallFinder = new FindBall(Detector, IntakeMechanism);
-  private final ParallelCommandGroup ContinuousTeleop = new ParallelCommandGroup(ActivateIntake,ActivateBallFinder,ActivateMattDrive);
+  //private final FindBall ActivateBallFinder = new FindBall(Detector, IntakeMechanism);
+  private final ParallelCommandGroup ContinuousTeleop = new ParallelCommandGroup(ActivateIntake,ActivateMattDrive);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -85,8 +85,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //YButton.whenPressed(new InstantCommand(HatchSolenoid::toggleHatchState, HatchSolenoid));
-    UpPOV.whenPressed(new InstantCommand(() -> {ActivateIntake.incrementIntakePower(0.25);}));
-    DownPOV.whenPressed(new InstantCommand(() -> {ActivateIntake.incrementIntakePower(-0.25);}));
+    UpPOV.whenPressed(new InstantCommand(() -> {ActivateIntake.incrementIntakePower(0.05);}));
+    DownPOV.whenPressed(new InstantCommand(() -> {ActivateIntake.incrementIntakePower(-0.05);}));
 
   }
 
