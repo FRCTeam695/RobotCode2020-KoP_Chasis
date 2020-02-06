@@ -47,8 +47,8 @@ public class MattDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    forward = Controller.getRawAxis(leftSideAxisID);
-    right = Controller.getRawAxis(rightSideAxisID);
+    forward = Controller.getRawAxis(leftSideAxisID)/4;
+    right = Controller.getRawAxis(rightSideAxisID)/4;
 
     rightPower = forward + right;
     leftPower = forward - right;
