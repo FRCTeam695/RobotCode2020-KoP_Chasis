@@ -64,7 +64,7 @@ public class RobotContainer {
   //***************************************************************************/
   //private final TankDrive ActivateTankDrive = new TankDrive(RobotDriveMotors,ControllerDrive,1,5);
   private final MattDrive ActivateMattDrive = new MattDrive(RobotDriveMotors,ControllerDrive,1,4);
-  private final EnableConstantIntake ActivateIntake = new EnableConstantIntake(IntakeMechanism,1);
+  private final EnableConstantIntake ActivateIntake = new EnableConstantIntake(IntakeMechanism,-.3);
   //private final EnableConstantIntake ActivateLift = new EnableConstantIntake(BallLift,-Constants.INTAKE_POWER);
   //private final FindBall ActivateBallFinder = new FindBall(Detector, IntakeMechanism);
   private final ParallelCommandGroup ContinuousTeleop = new ParallelCommandGroup(ActivateIntake,ActivateMattDrive);
